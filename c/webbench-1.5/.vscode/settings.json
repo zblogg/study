@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "param.h": "c",
+        "getopt.h": "c",
+        "types.h": "c"
+    }
+}
