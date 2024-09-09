@@ -26,6 +26,9 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+/**
+ * 建立到指定主机端口的socket连接
+ */
 int Socket(const char *host, int clientPort)
 {
     int sock;
@@ -36,8 +39,9 @@ int Socket(const char *host, int clientPort)
     memset(&ad, 0, sizeof(ad));
     ad.sin_family = AF_INET;
 
-    //
+    // 点分10进制转换为网络字节序
     inaddr = inet_addr(host);
+    
     if (inaddr != INADDR_NONE)
         memcpy(&ad.sin_addr, &inaddr, sizeof(inaddr));
     else
@@ -49,9 +53,11 @@ int Socket(const char *host, int clientPort)
     }
     ad.sin_port = htons(clientPort);
 
+    // 创建套接字
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0)
         return sock;
+    // 进行连接
     if (connect(sock, (struct sockaddr *)&ad, sizeof(ad)) < 0)
         return -1;
     return sock;

@@ -76,6 +76,7 @@ static const struct option long_options[] =
         {NULL, 0, NULL, 0}};
 
 /* prototypes */
+// 声明
 static void benchcore(const char *host, const int port, const char *request);
 static int bench(void);
 static void build_request(const char *url);
@@ -117,6 +118,7 @@ int main(int argc, char *argv[])
       return 2;
    }
 
+   // 获取参数
    while ((opt = getopt_long(argc, argv, "912Vfrt:p:c:?h", long_options, &options_index)) != EOF)
    {
       switch (opt)
@@ -177,6 +179,7 @@ int main(int argc, char *argv[])
       }
    }
 
+   // 需要非-参数表示
    if (optind == argc)
    {
       fprintf(stderr, "webbench: Missing URL!\n");
@@ -237,6 +240,9 @@ int main(int argc, char *argv[])
    return bench();
 }
 
+/**
+ * 根据请求路径构造请求
+ */
 void build_request(const char *url)
 {
    char tmp[10];
