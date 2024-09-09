@@ -8,6 +8,7 @@ TMPDIR=/tmp/webbench-$(VERSION)
 
 CFLAGS += -I/usr/include/tirpc
 
+# 执行make时，执行webbench和tags两个目标 1.
 all:   webbench tags
 
 tags:  *.c
@@ -20,6 +21,7 @@ install: webbench
 	install -m 644 debian/copyright $(DESTDIR)$(PREFIX)/share/doc/webbench
 	install -m 644 debian/changelog $(DESTDIR)$(PREFIX)/share/doc/webbench
 
+# 执行webbench目标，依赖webbench.o和Makefile 2.
 webbench: webbench.o Makefile
 	$(CC) $(CFLAGS) $(LDFLAGS) -o webbench webbench.o $(LIBS) 
 
@@ -37,6 +39,7 @@ tar:   clean
 	ln -sf debian/changelog $(TMPDIR)/ChangeLog
 	-cd $(TMPDIR) && cd .. && tar cozf webbench-$(VERSION).tar.gz webbench-$(VERSION)
 
+# webbench.o由一些c文件生成
 webbench.o:	webbench.c socket.c Makefile
 
 .PHONY: clean install all tar
