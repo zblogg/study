@@ -80,3 +80,129 @@ yarn workspace hello dev
 
 ## 脚本
 
+位于package.json的scripts属性的配置，使用：  
+`npm run <stage>`或`npm run-script <stage>`
+
+执行依赖项中脚本
+```bash
+npm explore <pkg> -- npm run <stage>
+```
+
+### pre和post脚本
+
+可以为任意脚本添加pre和post脚本
+```json
+{
+  "scripts": {
+    "precompress": "{{ executes BEFORE the `compress` script }}",
+    "compress": "{{ run command to compress files }}",
+    "postcompress": "{{ executes AFTER `compress` script }}"
+  }
+}
+```
+
+`npm run compress`将会先执行pre然后执行compress，然后执行postcompress
+
+### 生命周期脚本
+
+- prepare
+- prepublish
+- prepublishOnly
+- prepack
+- postpack
+- dependencies
+
+执行`npm cache add`
+```mermaid
+graph TD;
+    prepare
+```
+
+执行`npm ci`
+```mermaid
+graph TD;
+    preinstall --> install
+    install --> postinstall
+    postinstall --> prepublish
+    prepublish --> preprepare
+    preprepare --> prepare
+    prepare --> postprepare
+```
+
+执行`npm diff`
+```mermaid
+graph TD;
+    prepare
+```
+
+执行`npm install`
+```mermaid
+graph TD;
+    preinstall --> install
+    install --> postinstall
+    postinstall --> prepublish
+    prepublish --> preprepare
+    preprepare --> prepare
+    prepare --> postprepare
+```
+
+执行`npm pack`
+```mermaid
+graph TD;
+    prepack --> prepare
+    prepare --> postpack
+```
+
+执行`npm publish`
+```mermaid
+graph TD;
+    prepublishOnly --> prepack
+    prepack --> prepare
+    prepare --> postpack
+    postpack --> publish
+    publish --> postpublish
+```
+
+执行`npm rebuild`
+```mermaid
+graph TD;
+    preinstall --> install
+    install --> postinstall
+    postinstall --> prepare
+```
+
+执行`npm restart`
+```mermaid
+graph TD;
+    prerestart --> restart
+    restart --> postrestart
+```
+
+执行`npm run xxx`（用户自定义）
+```mermaid
+graph TD;
+    A["pre&lt;user-defined&gt;"] --> B["&lt;user-defined&gt;"]
+    B --> C["post&lt;user-defined&gt;"]
+```
+
+执行`npm start`
+```mermaid
+graph TD;
+    prestart --> start
+    start --> poststart
+```
+
+执行`npm stop`
+```mermaid
+graph TD;
+    prestop --> stop
+    stop --> poststop
+```
+
+执行`npm version`
+```mermaid
+graph TD;
+    preversion --> version
+    version --> postversion
+```
+

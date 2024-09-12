@@ -4,12 +4,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.test.js",
+    "start": ""
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "files": [
-    
+    "index.js",
+    "dist/*"
   ]
 }
