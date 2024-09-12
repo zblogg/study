@@ -8,5 +8,11 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "files": [
+
+  ],
+  "dependencies": {
+    "dayjs": "^1.0.0"
+  }
 }
