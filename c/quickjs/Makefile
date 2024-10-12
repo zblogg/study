@@ -22,9 +22,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+#### 系统编译 ####
+# mac系统
 ifeq ($(shell uname -s),Darwin)
 CONFIG_DARWIN=y
 endif
+# FreeBSD系统
 ifeq ($(shell uname -s),FreeBSD)
 CONFIG_FREEBSD=y
 endif
@@ -52,6 +55,7 @@ PREFIX?=/usr/local
 #CONFIG_UBSAN=y
 
 # include the code for BigFloat/BigDecimal and math mode
+# 包含BigFloat和BigDecimal
 CONFIG_BIGNUM=y
 
 OBJDIR=.obj
@@ -68,6 +72,7 @@ endif
 
 ifdef CONFIG_DARWIN
 # use clang instead of gcc
+# 使用clang而不是gcc
 CONFIG_CLANG=y
 CONFIG_DEFAULT_AR=y
 endif
@@ -78,6 +83,7 @@ CONFIG_DEFAULT_AR=y
 CONFIG_LTO=
 endif
 
+# 在linux上交叉编译windows
 ifdef CONFIG_WIN32
   ifdef CONFIG_M32
     CROSS_PREFIX?=i686-w64-mingw32-
@@ -90,10 +96,11 @@ else
   EXE=
 endif
 
+# 配置编译参数
 ifdef CONFIG_CLANG
   HOST_CC=clang
   CC=$(CROSS_PREFIX)clang
-  CFLAGS+=-g -Wall -MMD -MF $(OBJDIR)/$(@F).d
+  CFLAGS += -g -Wall -MMD -MF $(OBJDIR)/$(@F).d
   CFLAGS += -Wextra
   CFLAGS += -Wno-sign-compare
   CFLAGS += -Wno-missing-field-initializers
@@ -131,18 +138,23 @@ else
     AR=$(CROSS_PREFIX)ar
   endif
 endif
+
 STRIP?=$(CROSS_PREFIX)strip
 CFLAGS+=-fwrapv # ensure that signed overflows behave as expected
+
 ifdef CONFIG_WERROR
 CFLAGS+=-Werror
 endif
 DEFINES:=-D_GNU_SOURCE -DCONFIG_VERSION=\"$(shell cat VERSION)\"
+
 ifdef CONFIG_BIGNUM
 DEFINES+=-DCONFIG_BIGNUM
 endif
+
 ifdef CONFIG_WIN32
 DEFINES+=-D__USE_MINGW_ANSI_STDIO # for standard snprintf behavior
 endif
+
 ifndef CONFIG_WIN32
 ifeq ($(shell $(CC) -o /dev/null compat/test-closefrom.c 2>/dev/null && echo 1),1)
 DEFINES+=-DHAVE_CLOSEFROM
