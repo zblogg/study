@@ -1,0 +1,1 @@
+rm *hello *hello.s *hello.i *hello.o out/* a.out
