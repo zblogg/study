@@ -32,6 +32,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <time.h>
+// 根据操作系统架构配置malloc
 #if defined(__APPLE__)
 #include <malloc/malloc.h>
 #elif defined(__linux__) || defined(__GLIBC__)
