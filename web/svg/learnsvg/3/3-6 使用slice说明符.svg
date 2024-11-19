@@ -1,0 +1,15 @@
+<!-- 高视口 -->
+<svg preserveAspectRatio="xMinYMin slice" viewBox="0 0 90 90" width="45" height="135" xmlns="http://www.w3.org/2000/svg">
+</svg>
+<svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 90 90" width="45" height="135" xmlns="http://www.w3.org/2000/svg">
+</svg>
+<svg preserveAspectRatio="xMaxYMax slice" viewBox="0 0 90 90" width="45" height="135" xmlns="http://www.w3.org/2000/svg">
+</svg>
+
+<!-- 宽视口 -->
+<svg preserveAspectRatio="xMinYMin slice" viewBox="0 0 90 90" width="135" height="45" xmlns="http://www.w3.org/2000/svg">
+</svg>
+<svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 90 90" width="135" height="45" xmlns="http://www.w3.org/2000/svg">
+</svg>
+<svg preserveAspectRatio="xMaxYMax slice" viewBox="0 0 90 90" width="135" height="45" xmlns="http://www.w3.org/2000/svg">
+</svg>

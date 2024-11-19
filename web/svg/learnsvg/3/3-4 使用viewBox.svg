@@ -1,0 +1,7 @@
+<svg width="4cm" height="5cm" viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="35" width="40" height="40" stroke="black" fill="none" />
+    <!-- 房顶 -->
+    <polyline points="10 35, 30 7.68, 50 35" stroke="black" fill="none" />
+    <!-- 房门 -->
+    <polyline points="30 75, 30 55, 40 55, 40 75" stroke="black" fill="none" />
+</svg>
