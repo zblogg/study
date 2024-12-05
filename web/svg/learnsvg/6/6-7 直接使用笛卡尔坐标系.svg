@@ -1,0 +1,7 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 轴 -->
+    <line x1="0" y1="0" x2="100" y2="0" style="stroke: black;" />
+    <line x1="0" y1="0" x2="0" y2="100" style="stroke: black;" />
+
+    <polygon points="40 40, 100 40, 70 70, 40 70" style="fill: gray; stroke: black;" />
+</svg>

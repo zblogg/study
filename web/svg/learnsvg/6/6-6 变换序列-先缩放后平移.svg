@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="0" x2="0" y2="100" style="stroke: gray;" />
+    <line x1="0" y1="0" x2="100" y2="0" style="stroke: gray;" />
+
+    <!-- 先平移后缩放 -->
+    <rect x="10" y="10" width="20" height="15" 
+        transform="translate(30, 20) scale(2)" style="fill: gray"
+    />
+    <!-- 先缩放后平移 -->
+    <rect x="10" y="10" width="20" height="15"
+        transform="scale(2) translate(30, 20)" style="fill: black;"
+     />
+</svg>
