@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const Store = {
+  _handlers: [],
+  _flag: '',
+  subscribe: function(handler) {
+    this._handlers.push(handler);
+  },
+  set: function(value) {
+    this._flag = value;
+    this._handlers.forEach(handler => handler(value))
+  },
+  get: function() {
+    return this._flag;
+  }
+};
 
-  return (
-    <>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { value: Store.get() };
+    Store.subscribe(value => this.setState({ value }));
+    this._setState = Store.set.bind(Store)
+  }
+  render() {
+    return (
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Switcher
+          value={ this.state.value }
+          onChange={ this._setState } />
+           <Switcher
+          value={ this.state.value }
+          onChange={ this._setState } />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    );
+  }
+};
+
+function Switcher({ value, onChange }) {
+  return (
+    <button onClick={ e => onChange(!value) }>
+      { value ? 'lights on' : 'lights off' }
+    </button>
+  );
+};
+
+<Switcher
+  value={ Store.get() }
+  onChange={ Store.set.bind(Store) } />
 
 export default App
