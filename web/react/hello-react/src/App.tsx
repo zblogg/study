@@ -1,4 +1,7 @@
 import React from "react";
+import { useState } from 'react'
+
+import './App.css'
 
 const Store = {
   _handlers: [],
@@ -45,8 +48,5 @@ function Switcher({ value, onChange }) {
   );
 };
 
-<Switcher
-  value={ Store.get() }
-  onChange={ Store.set.bind(Store) } />
 
 export default App
