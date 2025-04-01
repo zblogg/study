@@ -1,0 +1,7 @@
+.logger-container {
+    border: red 1px solid;
+}
+.logger-container > p {
+    border: green 1px solid;
+    padding: 5px;
+}
